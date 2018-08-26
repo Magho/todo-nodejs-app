@@ -14,35 +14,29 @@ var todoSchema = new mongoose.Schema({
 // create model
 var Todo = mongoose.model('Todo', todoSchema);
 
-// create first item 
-var itemOne = Todo({ item : 'study Ml' }).save(function(err){
-	if (err)throw err;
-	console.log('item saved');
-});
-
-
-var data = [
-	{item : 'study Ml'},
-	{item : 'revise holy qouran'},
-	{item : 'apply project on studied material'},
-	{item : 'go to gym'}
-];
-
 module.exports = function(app) {
 
 	app.get('/todo', function(req, res){
-		res.render('todo', {todos : data});
+		// get data from mongodb and pass it to the view
+		Todo.find({}, function(err, data){
+			if (err) throw err;
+			res.render('todo', {todos : data});
+		});
 	});
 
 	app.post('/todo', urlencodedParser, function(req, res){
-		data.push(req.body);
-		res.json(data);
+		// get data from view and add it to mongodb
+		var newTodo = Todo(req.body).save(function(err, data){
+			if (err) throw err;
+			res.json(data);
+		});
 	});
 
 	app.delete('/todo/:item', function(req, res){
-		data = data.filter(function(todo){
-			return todo.item.trim() !== req.params.item.trim();
+		// delete the requseted item from mongodb
+		Todo.find({item : req.params.item.trim()}).remove(function(err, data){
+			if (err) throw err;
+			res.json(data);
 		});
-		res.json(data);
 	});
 };
