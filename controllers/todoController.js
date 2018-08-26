@@ -18,8 +18,10 @@ module.exports = function(app) {
 		res.json(data);
 	});
 
-	app.delete('/todo', function(req, res){
-		
+	app.delete('/todo/:item', function(req, res){
+		data = data.filter(function(todo){
+			return todo.item.trim() !== req.params.item.trim();
+		});
+		res.json(data);
 	});
-
 };
