@@ -3,7 +3,9 @@ This app is a simple todo app, made for learning purpose.
 
 ## Screenshots
 
-<img src="https://github.com/Magho/todo-nodejs-app/blob/master/images/1.png" width="400"> <img src="https://github.com/Magho/todo-nodejs-app/blob/master/images/2.png" width="400">
+<img src="https://github.com/Magho/todo-nodejs-app/blob/master/images/1.png" width="400"> <img src="https://github.com/Magho/todo-nodejs-app/blob/master/images/2.png" width="400"> ![Alt Text](https://github.com/Magho/todo-nodejs-app/blob/master/images/Peek%202018-08-27%2020-03.gif)
+
+
 
 ## techonologies used
 
